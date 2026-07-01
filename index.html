@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASAD — мусульманский бренд кимоно для джиу-джитсу</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --black:#07070a;
+            --charcoal:#111115;
+            --gold:#c9a44c;
+            --gold-soft:#e7d8ab;
+            --cream:#f3efe6;
+            --line:rgba(201,164,76,0.22);
+        }
+        *{box-sizing:border-box;margin:0;padding:0;}
+        html{scroll-behavior:smooth;}
+        body{
+            background:var(--black);
+            color:var(--cream);
+            font-family:'Inter',sans-serif;
+            font-weight:300;
+            overflow-x:hidden;
+        }
+        a{color:inherit;text-decoration:none;}
+
+        /* ── ЗВЁЗДНЫЙ ФОН ── */
+        #stars-canvas{
+            position:fixed;inset:0;z-index:0;pointer-events:none;
+        }
+
+        section{
+            position:relative;z-index:1;
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            padding:90px 6vw;
+            border-bottom:1px solid var(--line);
+        }
+
+        .eyebrow{
+            font-family:'Amiri',serif;font-style:italic;color:var(--gold);
+            letter-spacing:.25em;font-size:.9rem;margin-bottom:18px;text-transform:uppercase;
+        }
+        h1,h2{font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--cream);}
+        h1{font-size:clamp(2.4rem,6vw,4rem);line-height:1.1;margin-bottom:24px;}
+        h1 em{font-style:italic;color:var(--gold-soft);}
+        h2{font-size:clamp(1.8rem,3.4vw,2.4rem);margin-bottom:20px;}
+        p.lead{max-width:580px;color:rgba(243,239,230,0.72);line-height:1.85;font-size:1rem;}
+
+        .crescent-divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:28px 0;}
+        .crescent-divider span{width:50px;height:1px;background:var(--line);}
+        .crescent-divider svg{width:18px;height:18px;color:var(--gold);}
+
+        /* ── HERO ── */
+        .hero{background:radial-gradient(ellipse at 50% 40%, rgba(201,164,76,0.09), transparent 65%);}
+        .logo{
+            font-family:'Amiri',serif;font-size:1.6rem;letter-spacing:.35em;color:var(--gold-soft);
+            display:flex;align-items:center;gap:10px;margin-bottom:50px;
+        }
+        .logo svg{width:20px;height:20px;}
+        .scroll-hint{
+            margin-top:60px;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+            color:rgba(243,239,230,0.35);animation:pulse 2.4s ease-in-out infinite;
+        }
+        @keyframes pulse{0%,100%{opacity:.35;}50%{opacity:.7;}}
+
+        /* ── ПРОДУКТ (картинка + инфо) ── */
+        .product-section{min-height:100vh;padding:90px 6vw;}
+        .product-inner{
+            display:grid;
+            grid-template-columns:1.1fr 1fr;
+            gap:6vw;
+            align-items:center;
+            max-width:1100px;
+            width:100%;
+            text-align:left;
+        }
+        .product-img{
+            width:100%;
+            border:1px solid var(--line);
+            box-shadow:0 30px 80px rgba(0,0,0,.7);
+        }
+        .product-info{display:flex;flex-direction:column;gap:28px;}
+        .product-info h2{text-align:left;}
+        .product-info p.lead{text-align:left;}
+
+        .colors{display:flex;gap:36px;flex-wrap:wrap;}
+        .color-block{display:flex;align-items:center;gap:14px;}
+        .swatch{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);flex-shrink:0;}
+        .swatch.black-s{background:#0a0a0b;box-shadow:0 0 0 1px rgba(255,255,255,0.08);}
+        .swatch.white-s{background:#f3efe6;}
+        .color-label{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-soft);}
+
+        .price-block{border-top:1px solid var(--line);padding-top:24px;}
+        .price-block small{
+            display:block;font-family:'Inter',sans-serif;font-size:.68rem;letter-spacing:.16em;
+            text-transform:uppercase;color:rgba(243,239,230,0.45);margin-bottom:8px;
+        }
+        .price{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--gold);}
+
+        .badge-row{display:flex;gap:12px;flex-wrap:wrap;}
+        .badge{
+            border:1px solid var(--line);padding:8px 16px;
+            font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(243,239,230,0.6);
+        }/* ── РАЗМЕРЫ ── */
+        table{border-collapse:collapse;margin-top:30px;font-size:.92rem;width:100%;max-width:580px;}
+        th,td{padding:14px 20px;text-align:center;border-bottom:1px solid var(--line);color:rgba(243,239,230,0.78);}
+        th{color:var(--gold-soft);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;}
+        tr:hover td{background:rgba(201,164,76,0.05);}
+
+        /* ── КОНТАКТЫ ── */
+        .contact-section{border-bottom:none;}
+        .phones{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-top:40px;}
+        .phone-card{
+            border:1px solid var(--line);padding:22px 40px;
+            font-family:'Cormorant Garamond',serif;font-size:1.4rem;
+            color:var(--gold-soft);transition:all .3s;display:flex;flex-direction:column;gap:6px;
+        }
+        .phone-card:hover{border-color:var(--gold);background:rgba(201,164,76,0.08);}
+        .phone-card small{
+            font-family:'Inter',sans-serif;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+            color:rgba(243,239,230,0.4);
+        }
+        .wa-hint{margin-top:20px;font-size:.8rem;color:rgba(243,239,230,0.4);letter-spacing:.04em;}
+
+        footer{
+            position:relative;z-index:1;
+            text-align:center;padding:40px 6vw;
+            color:rgba(243,239,230,0.3);font-size:.72rem;letter-spacing:.05em;
+            border-top:1px solid var(--line);
+        }
+
+        @media(max-width:760px){
+            .product-inner{grid-template-columns:1fr;}
+            .product-info h2,.product-info p.lead{text-align:center;}
+            .colors,.badge-row{justify-content:center;}
+            .price-block{text-align:center;}
+        }
+    </style>
+</head>
+<body>
+
+<!-- Звёздный холст -->
+<canvas id="stars-canvas"></canvas>
+
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2C7 2 2.6 6.4 2.6 12S7 22 12.5 22c2.2 0 4.2-.7 5.9-2-1 .3-2 .5-3.1.5-5 0-9-4-9-9s4-9 9-9c1.1 0 2.1.2 3.1.5C16.7 2.7 14.7 2 12.5 2z"/></svg>
+        ASAD
+    </div>
+    <div class="eyebrow">Bismillah · Новый бренд</div>
+    <h1>Кимоно <em>ASAD</em><br>для джиу-джитсу</h1>
+    <div class="crescent-divider">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2C7 2 2.6 6.4 2.6 12S7 22 12.5 22c2.2 0 4.2-.7 5.9-2-1 .3-2 .5-3.1.5-5 0-9-4-9-9s4-9 9-9c1.1 0 2.1.2 3.1.5C16.7 2.7 14.7 2 12.5 2z"/></svg>
+        <span></span>
+    </div>
+    <p class="lead">Скромность и сила в каждой нити.</p>
+    <div class="scroll-hint">Листай вниз ↓</div>
+</section>
+
+<!-- ── О БРЕНДЕ ── -->
+<section>
+    <div class="eyebrow">Кто мы</div>
+    <h2>Новый мусульманский бренд</h2>
+    <div class="crescent-divider"><span></span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2C7 2 2.6 6.4 2.6 12S7 22 12.5 22c2.2 0 4.2-.7 5.9-2-1 .3-2 .5-3.1.5-5 0-9-4-9-9s4-9 9-9c1.1 0 2.1.2 3.1.5C16.7 2.7 14.7 2 12.5 2z"/></svg>
+        <span></span></div>
+    <p class="lead">ASAD — новый бренд кимоно для бразильского джиу-джитсу, созданный мусульманскими спортсменами для своих братьев на татами. В каждое кимоно вкладываем уважение к традициям, скромность и качество, достойное настоящего бойца.</p>
+</section>
+
+<!-- ── ПРОДУКТ ── -->
+<section class="product-section">
+    <div class="product-inner">
+        <img class="product-img" src="images/img.png" alt="Кимоно ASAD — чёрное и белое">
+        <div class="product-info">
+            <div>
+                <div class="eyebrow">Коллекция</div>
+                <h2>Две расцветки</h2>
+                <p class="lead" style="margin-top:14px;">Вышитый полумесяц и цветок розы — символы веры и достоинства. Плотная ткань 450–550 GSM, усиленные швы, крой по стандарту IBJJF.</p>
+            </div>
+
+            <div class="colors">
+                <div class="color-block">
+                    <div class="swatch black-s"></div>
+                    <span class="color-label">Чёрное</span>
+                </div>
+                <div class="color-block">
+                    <div class="swatch white-s"></div>
+                    <span class="color-label">Белое</span>
+                </div>
+            </div>
+
+            <div class="badge-row">
+                <span class="badge">450–550 GSM</span>
+                <span class="badge">Стандарт IBJJF</span>
+                <span class="badge">Вышивка ручной работы</span>
+            </div>
+
+            <div class="price-block"><small>Цена</small>
+                <div class="price">29 990 ₸</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── РАЗМЕРЫ ── -->
+<section>
+    <div class="eyebrow">Подбор размера</div>
+    <h2>Таблица размеров</h2>
+    <table>
+        <tr><th>Размер</th><th>Рост, см</th><th>Вес, кг</th></tr>
+        <tr><td>A1</td><td>155–165</td><td>53–63</td></tr>
+        <tr><td>A2</td><td>165–175</td><td>64–74</td></tr>
+        <tr><td>A3</td><td>175–183</td><td>75–88</td></tr>
+        <tr><td>A4</td><td>183–190</td><td>89–100</td></tr>
+        <tr><td>A5</td><td>190–198</td><td>101–115</td></tr>
+    </table>
+</section>
+
+<!-- ── КОНТАКТЫ ── -->
+<section class="contact-section">
+    <div class="eyebrow">Связаться с нами</div>
+    <h2>Контакты</h2>
+    <p class="lead">Звоните или пишите в WhatsApp — поможем выбрать размер и оформить заказ.</p>
+    <div class="phones">
+        <a class="phone-card" href="tel:+77021747832">
+            <small>Телефон / WhatsApp</small>+7 702 174 78 32
+        </a>
+        <a class="phone-card" href="tel:+77070026526">
+            <small>Телефон / WhatsApp</small>+7 707 002 65 26
+        </a>
+    </div>
+    <p class="wa-hint">Доставка по Казахстану и СНГ</p>
+</section>
+
+<footer>© 2026 ASAD Gi Kimonos — Сделано с честью для пути воина.</footer>
+
+<script>
+    /* ── ЗВЁЗДЫ И ПОЛУМЕСЯЦЫ ── */
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize(){
+        canvas.width = window.innerWidth;
+        canvas.height = document.body.scrollHeight;
+    }
+    window.addEventListener('resize', () => { resize(); draw(); });
+    resize();
+
+    const STAR_COUNT = 280;
+    const stars = Array.from({length: STAR_COUNT}, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.2,
+        a: Math.random(),
+        speed: Math.random() * 0.003 + 0.001,
+        phase: Math.random() * Math.PI * 2
+    }));
+
+    /* несколько декоративных полумесяцев */
+    const moons = [
+        { x: 0.15, y: 0.08, size: 18 },
+        { x: 0.82, y: 0.22, size: 12 },
+        { x: 0.07, y: 0.55, size: 9  },
+        { x: 0.9,  y: 0.68, size: 14 },
+        { x: 0.45, y: 0.88, size: 10 },
+    ];
+
+    function drawCrescent(cx, cy, size, alpha){
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = '#c9a44c';
+        ctx.beginPath();
+        ctx.arc(cx, cy, size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(cx + size * 0.42, cy - size * 0.08, size * 0.82, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
+
+    let t = 0;
+    function draw(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        /* звёзды */
+        stars.forEach(s => {
+            const twinkle = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase));
+            ctx.globalAlpha = s.a * twinkle;
+            ctx.fillStyle = '#e7d8ab';
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        /* полумесяцы */
+        moons.forEach((m, i) => {
+            const pulse = 0.08 + 0.04 * Math.sin(t * 0.3 + i);
+            drawCrescent(m.x * canvas.width, m.y * canvas.height, m.size, pulse);
+        });
+
+        ctx.globalAlpha = 1;
+        t += 0.016;
+        requestAnimationFrame(draw);
+    }
+
+    /* перестраиваем холст при скролле (высота страницы может вырасти) */
+    window.addEventListener('scroll', () => {
+        if(canvas.height < document.body.scrollHeight){
+            resize();
+            stars.forEach(s => { if(s.y > canvas.height * 0.7) s.y = Math.random() * canvas.height; });
+        }
+    });
+
+    draw();
+</script>
+</body>
+</html>
